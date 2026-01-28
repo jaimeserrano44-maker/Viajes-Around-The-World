@@ -1,0 +1,357 @@
+/* 
+   Project: Around The World
+   Theme: Premium Minimalist Travel
+   Font: Playfair Display & Inter 
+*/
+
+:root {
+    /* Colors */
+    --bg-color: #F9F8F4; /* Soft Cream / Off-white for "Ocealis" vibe */
+    --text-color: #1A1A1A;
+    --accent-color: #D4AF37; /* Very subtle gold/tan if needed, or stick to monochrome */
+    --card-bg: #FFFFFF;
+    
+    /* Spacing */
+    --section-padding: 8rem 2rem;
+    --container-width: 1400px;
+    
+    /* Typography */
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Inter', sans-serif;
+}
+
+/* Reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    opacity: 0; /* JS will fade in */
+    visibility: hidden;
+}
+
+body.loaded {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* Typography Utility */
+h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+}
+
+.mt-lg { margin-top: 4rem; }
+.text-center { text-align: center; }
+
+/* Navigation */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 3rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    mix-blend-mode: difference; /* Cool effect over images */
+    color: white; /* Will invert based on background if mix-blend works well, otherwise strictly white */
+}
+
+.nav-logo {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+}
+
+.nav-links a {
+    margin: 0 1.5rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.nav-links a:hover {
+    opacity: 1;
+}
+
+.nav-cta .btn-text {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-bg-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.hero-bg {
+    width: 100%;
+    height: 100%;
+    filter: brightness(0.65); /* Darken slightly for text readability */
+    transform: scale(1.1); /* JS will parallax this scale */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    color: #fff;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 10vw, 9rem);
+    line-height: 0.9;
+    overflow: hidden; /* For reveal animation */
+    margin-bottom: 2rem;
+}
+
+.hero-title .line {
+    display: block;
+    transform: translateY(100%); /* Start hidden */
+}
+
+.hero-subtitle {
+    font-size: 1rem;
+    max-width: 400px;
+    margin: 0 auto;
+    opacity: 0; /* Fade in via JS */
+    font-weight: 300;
+    letter-spacing: 0.02em;
+}
+
+.hero-scroll-indicator {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* Intro Section */
+.intro {
+    padding: var(--section-padding);
+}
+
+.intro-kicker {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 1.5rem;
+    color: #888;
+}
+
+.intro-heading {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1.2;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Destinations Grid */
+.destinations {
+    padding: 5rem 0 10rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 4rem;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 1rem;
+}
+
+.section-title {
+    font-size: 3rem;
+}
+
+.btn-link {
+    font-size: 1rem;
+    text-decoration: underline;
+}
+
+.destination-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2rem;
+}
+
+.destination-card {
+    grid-column: span 4;
+    position: relative;
+}
+
+.destination-card:nth-child(2) {
+    grid-column: 5 / 9;
+    margin-top: 8rem; /* Staggered layout */
+}
+
+.destination-card:nth-child(3) {
+    grid-column: 9 / 13;
+}
+
+.card-image-wrapper {
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    aspect-ratio: 3/4;
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.destination-card:hover .card-image {
+    transform: scale(1.05);
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.card-location {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.5rem;
+    color: #666;
+}
+
+.card-title {
+    font-size: 1.75rem;
+}
+
+/* Parallax Quote */
+.quote-parallax {
+    position: relative;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.parallax-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%; /* Taller for parallax */
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.6);
+}
+
+.quote-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    text-align: center;
+}
+
+blockquote {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    font-style: italic;
+    margin-bottom: 2rem;
+}
+
+cite {
+    font-family: var(--font-sans);
+    font-style: normal;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* Footer */
+.footer {
+    padding: 5rem 0;
+    background: #111;
+    color: #fff;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+}
+
+.footer-logo {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+}
+
+.footer-socials a {
+    margin-left: 2rem;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.footer-bottom {
+    border-top: 1px solid #333;
+    padding-top: 2rem;
+    color: #555;
+    font-size: 0.8rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .destination-card, 
+    .destination-card:nth-child(2),
+    .destination-card:nth-child(3) {
+        grid-column: span 12;
+        margin-top: 2rem !important;
+    }
+}
