@@ -118,24 +118,11 @@ import Layout from '../layouts/Layout.astro';
     </footer>
 
     <script>
-        "use client";
         import gsap from "gsap";
         import { ScrollTrigger } from "gsap/ScrollTrigger";
-        import Lenis from 'lenis';
 
         // Register GSAP Plugins
         gsap.registerPlugin(ScrollTrigger);
-
-        // 1. Initialize Lenis (Smooth Scroll)
-        // 1. Initialize Lenis (Smooth Scroll)
-        const lenis = new Lenis();
-
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-
-        requestAnimationFrame(raf);
 
         // 2. Initial Page Load Animation
         const tl = gsap.timeline();
@@ -159,6 +146,7 @@ import Layout from '../layouts/Layout.astro';
             duration: 1,
             ease: "power2.out"
         }, "-=1");
+
 
 
         // 3. Scroll Animations
@@ -217,4 +205,5 @@ import Layout from '../layouts/Layout.astro';
             ease: "none"
         });
     </script>
+    <script type="module" src="/src/scripts/lenis.js"></script>
 </Layout>
