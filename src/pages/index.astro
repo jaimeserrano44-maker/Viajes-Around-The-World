@@ -118,19 +118,17 @@ import Layout from '../layouts/Layout.astro';
     </footer>
 
     <script>
+        "use client";
         import gsap from "gsap";
         import { ScrollTrigger } from "gsap/ScrollTrigger";
-        import Lenis from "@studio-freight/lenis";
+        import Lenis from 'lenis';
 
         // Register GSAP Plugins
         gsap.registerPlugin(ScrollTrigger);
 
         // 1. Initialize Lenis (Smooth Scroll)
-        const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            // hover: true 
-        });
+        // 1. Initialize Lenis (Smooth Scroll)
+        const lenis = new Lenis();
 
         function raf(time) {
             lenis.raf(time);
